@@ -26,11 +26,8 @@ npm install
 npm start
 ```
 
-# Installation Instructions
 
-## 2. Install pyenv
-
--   run the following in terminal
+## Pyenv Installation
 
 ```shell
 $ brew update
@@ -38,79 +35,43 @@ $ brew install pyenv
 $ echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 ```
 
-## 3. Install pipenv
+## Python Installation
 
--   run the following commands in terminal
+```shell
+$ pyenv install
+```
+
+## Pipenv Installation
 
 ```shell
 $ brew install pipenv
 $ echo 'eval "$(pipenv --completion)"' >> ~/.bash_profile
 ```
 
-## 4. Install Postgres
+## Python dependencies
 
--   run the following command in terminal to install postgres
-
-```shell
-$ brew install postgres
-```
-
--   run the following command in terminal to run postgres as a service
+Dependencies can be downloaded
 
 ```shell
-$ brew services start postgres
+pipenv sync
 ```
 
--   create the resq database with psql
+Additional dependencies can be added via
 
 ```shell
-$ psql postgres
-postgres=# CREATE DATABASE resq;
+pipenv install {pip_package_name}
 ```
 
-## 5. Install WeasyPrint dependencies
+## Javascript Dependencies
 
--   For installing WeasyPrint dependencies `brew install cairo pango gdk-pixbuf libffi`
-
-## 6. Install Python & dependencies
-
--   If you're on Mac, you need to do the following (you may have to do this every time you run pip install):
-
-### Mac OS Catalina (10.15.x) users
+From the frontend folder, dependencies can be downloaded
 
 ```shell
-brew install curl-openssl # You only need to do this once
-export PYCURL_SSL_LIBRARY=openssl
-export PYCURL_CURL_CONFIG=/usr/local/opt/curl-openssl/bin/curl-config;export LDFLAGS='-L/usr/local/opt/openssl/lib -L/usr/local/opt/c-ares/lib -L/usr/local/opt/nghttp2/lib -L/usr/local/opt/libmetalink/lib -L/usr/local/opt/rtmpdump/lib -L/usr/local/opt/libssh2/lib -L/usr/local/opt/openldap/lib -L/usr/local/opt/brotli/lib';export CPPFLAGS=-I/usr/local/opt/openssl/include;pip install pycurl --compile --no-cache-dir
+npm install
 ```
 
--   run the following commands in terminals
+Additional dependencies can be added via
 
 ```shell
-$ pipenv sync --dev
+npm install {package_name} --save-exact
 ```
-
-### Older Versions of MacOS
-
-```shell
-pipenv shell
-export PYCURL_SSL_LIBRARY=openssl
-export CPPFLAGS=-I/usr/local/opt/openssl/include
-export LDFLAGS=-L/usr/local/opt/openssl/lib
-pip install pycurl==7.43.0.0 --global-option=build_ext --global-option="-L/usr/local/opt/openssl/lib" --global-option="-I/usr/local/opt/openssl/include"
-```
-
--   run the following commands in terminals
-
-```shell
-$ pipenv sync --dev
-```
-
-## 7. Run migrations & seed data
-
-```shell
-$ pipenv run python manage.py migrate
-$ pipenv run python manage.py seed_db
-```
-
-## 8. Start the development server
