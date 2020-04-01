@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @writer.name %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @writer.website %>
+</p>
+
+<p>
+  <strong>Website shortened:</strong>
+  <%= @writer.website_shortened %>
+</p>
+
+<p>
+  <strong>Website headings:</strong>
+  <%= @writer.website_headings %>
+</p>
+
+<%= link_to 'Edit', edit_writer_path(@writer) %> |
+<%= link_to 'Back', writers_path %>
