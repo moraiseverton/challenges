@@ -44,15 +44,11 @@ class WritersController < ApplicationController
     changed_website = (@writer.website != writer_params[:website])
 
     respond_to do |format|
-      if (changed_website) 
-        @writer.website_shortened = create_website_shortened
-        params[:website_shortened] = @writer.website_shortened
-
-        puts '@writer.website_shortened', @writer.website_shortened
-        puts 'writer_params', writer_params
-      end
-
       if @writer.update(writer_params)
+        if (changed_website)   
+          @writer.update_attribute(:website_shortened, create_website_shortened)
+        end
+
         format.html { redirect_to @writer, notice: 'Writer was successfully updated.' }
         format.json { render :show, status: :ok, location: @writer }
       else
