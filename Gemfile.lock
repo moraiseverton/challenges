@@ -185,6 +185,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
+  nokogiri (~> 1.6, >= 1.6.8)
   puma (~> 3.7)
   rails (~> 5.1.7)
   sass-rails (~> 5.0)

@@ -22,6 +22,9 @@ gem 'uglifier', '>= 1.3.0'
 # gem bitly shortner URLs
 gem 'bitly', '~> 2.0'
 
+# gem nokogiri web scraping
+gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
