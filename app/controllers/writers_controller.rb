@@ -81,7 +81,7 @@ class WritersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def writer_params
-      params.require(:writer).permit(:name, :website, :website_shortened, :website_headings)
+      params.require(:writer).permit(:name, :website, :website_shortened, :website_headings, :writer_ids => [])
     end
 
     def create_website_shortened
