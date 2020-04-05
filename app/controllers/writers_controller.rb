@@ -77,8 +77,7 @@ class WritersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_writer
-      @writer = Writer.find(params[:id])
-      # @writer.friendships = Writer.friendships.all.select("WHERE writer_a_id = ", params[:id], " OR writer_b_id = ", params[:id])
+      @writer ||= Writer.find_writer params[:id]
     end
 
     # Only allow a list of trusted parameters through.
