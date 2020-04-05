@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+
 class WritersController < ApplicationController
   before_action :set_writer, only: [:show, :edit, :update, :destroy]
 
@@ -26,6 +29,7 @@ class WritersController < ApplicationController
   def create
     @writer = Writer.new(writer_params)
     @writer.website_shortened = create_website_shortened
+    @writer.website_headings = scrap_website_headers
 
     respond_to do |format|
       if @writer.save
@@ -47,6 +51,7 @@ class WritersController < ApplicationController
       if @writer.update(writer_params)
         if (changed_website)   
           @writer.update_attribute(:website_shortened, create_website_shortened)
+          @writer.update_attribute(:website_headings, scrap_website_headers)
         end
 
         format.html { redirect_to @writer, notice: 'Writer was successfully updated.' }
@@ -83,5 +88,11 @@ class WritersController < ApplicationController
       client = Bitly::API::Client.new(token: "7000ae3c10755b540f1e1b05329808431ddfa975")
       bitlink = client.shorten(long_url: writer_params[:website])
       return bitlink.link
+    end
+
+    def scrap_website_headers
+      document = Nokogiri::HTML(open(writer_params[:website]).read)
+      headings = document.css("h1, h2, h3").map(&:text).join(" ")
+      return headings
     end
 end
