@@ -1,4 +1,5 @@
 class Writer < ApplicationRecord
+    default_scope { order(name: :asc) }
     validates :name, :website, presence: true
 
     has_and_belongs_to_many(:writer,
