@@ -8,17 +8,16 @@
       <th>Name</th>
       <th>Website</th>
       <th># friends</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @writers.each do |writer| %>
       <tr>
-        <td><%= writer.name %></td>
-        <td><%= writer.website_shortened %></td>
+        <td><%= link_to writer.name, writer %></td>
+        <td><%= link_to writer.website_shortened, writer.website, :target => "_blank" %></td>
         <td><%= writer.writer_ids.size %></td>
-        <td><%= link_to 'Show', writer %></td>
         <td><%= link_to 'Edit', edit_writer_path(writer) %></td>
         <td><%= link_to 'Delete', writer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
