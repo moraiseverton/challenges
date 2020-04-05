@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :friendships %>
-    <%= collection_check_boxes(:writer, :writer_ids, Writer.possible_friends, :id, :name) %>
+    <%= collection_check_boxes(:writer, :writer_ids, possible_friends, :id, :name) %>
   </div>
 
   <div class="actions">

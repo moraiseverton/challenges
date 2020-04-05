@@ -3,6 +3,7 @@ require 'open-uri'
 
 class WritersController < ApplicationController
   before_action :set_writer, only: [:show, :edit, :update, :destroy]
+  helper_method :possible_friends
 
   # GET /writers
   # GET /writers.json
@@ -77,6 +78,7 @@ class WritersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_writer
       @writer = Writer.find(params[:id])
+      # @writer.friendships = Writer.friendships.all.select("WHERE writer_a_id = ", params[:id], " OR writer_b_id = ", params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -94,5 +96,9 @@ class WritersController < ApplicationController
       document = Nokogiri::HTML(open(writer_params[:website]).read)
       headings = document.css("h1, h2, h3").map(&:text).join(" ")
       return headings
+    end
+
+    def possible_friends
+      @writers ||= Writer.list_writers_except @writer
     end
 end

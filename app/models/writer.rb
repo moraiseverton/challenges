@@ -6,8 +6,7 @@ class Writer < ApplicationRecord
       :foreign_key => :writer_a_id,
       :association_foreign_key => :writer_b_id)
 
-    def self.possible_friends
-      puts "name::  ", :id
-      Writer.where("id != ?", :id)
+    def self.list_writers_except writer_to_remove
+      return Writer.where.not(id: writer_to_remove.id)
     end
 end
