@@ -31,6 +31,11 @@
     <%= form.text_area :website_headings, id: :writer_website_headings %>
   </div>
 
+  <div class="field">
+    <%= form.label :friendships %>
+    <%= collection_check_boxes(:writer, :writer_ids, possible_friends, :id, :name) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
