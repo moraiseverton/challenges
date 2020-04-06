@@ -12,28 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :writer_name %>
+    <strong><%= form.label :name %></strong>
+    <%= form.text_field :name, id: :writer_name, :size=> "50" %>
   </div>
 
   <div class="field">
-    <%= form.label :website %>
-    <%= form.text_field :website, id: :writer_website %>
+    <strong><%= form.label :website %></strong>
+    <%= form.text_field :website, id: :writer_website, :size=> "100" %>
   </div>
 
   <div class="field">
-    <%= form.label :website_shortened %>
-    <%= form.text_field :website_shortened, id: :writer_website_shortened %>
-  </div>
-
-  <div class="field">
-    <%= form.label :website_headings %>
-    <%= form.text_area :website_headings, id: :writer_website_headings %>
-  </div>
-
-  <div class="field">
-    <%= form.label :friendships %>
-    <%= collection_check_boxes(:writer, :writer_ids, possible_friends, :id, :name) %>
+    <strong><%= form.label :friendships %></strong>
+    <%= collection_check_boxes(:writer, :writer_ids, possible_friends, :id, :name) do |b|
+          b.label(:"data-value" => b.value) { b.check_box + b.text }
+        end
+    %>
   </div>
 
   <div class="actions">
