@@ -3,7 +3,7 @@ require 'open-uri'
 
 class WritersController < ApplicationController
   before_action :set_writer, only: [:show, :edit, :update, :destroy]
-  helper_method :possible_friends
+  helper_method :possible_friends, :writer_friends
 
   # GET /writers
   # GET /writers.json
@@ -99,5 +99,9 @@ class WritersController < ApplicationController
 
     def possible_friends
       @writers ||= Writer.list_writers_except @writer
+    end
+
+    def writer_friends
+      return Writer.list_by_ids @writer.writer_ids
     end
 end
