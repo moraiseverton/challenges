@@ -25,6 +25,11 @@ class WritersController < ApplicationController
   def edit
   end
 
+  # GET /writers/breadcrumb/:search_query
+  def breadcrumb
+    puts "Mock breadcrumb"
+  end
+
   # POST /writers
   # POST /writers.json
   def create
