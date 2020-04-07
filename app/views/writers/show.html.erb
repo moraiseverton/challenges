@@ -33,6 +33,23 @@
   </table>
 </p>
 
+<p>
+  <div class="field">
+    <table col="1">
+      <tbody>
+        <tr>
+          <td><strong>Search</strong></td>
+        </tr>
+        <tr>
+          <td><%= text_field :heading_search, id: :heading_search, :size=> "50" %></td>
+        </tr>
+        <tr>
+          <td><%= button_to "Show breadcrumb", action: "breadcrumb" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</p>
 
 <%= link_to 'Edit', edit_writer_path(@writer) %> |
 <%= link_to 'Back', writers_path %>
