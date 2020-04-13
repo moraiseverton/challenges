@@ -60,10 +60,10 @@ public interface MovingAverage<T extends Number> {
     /**
      *
      * @param a
-     * @param lastElements
+     * @param numberOfElements
      * @return
      */
-    abstract T dividedByNumberOfElements(T a, int lastElements);
+    abstract T dividedByNumberOfElements(T a, int numberOfElements);
 
     /**
      * @param lastElements
