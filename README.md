@@ -36,3 +36,6 @@ We need to provide Google Analytic like services to our customers. Please provid
 3. Provide metrics to customers with at most one hour delay.
 4. Run with minimum downtime.
 5. Have the ability to reprocess historical data in case of bugs in the processing logic.
+
+### Solution
+The Design Solution can be accessed on [this link](https://docs.google.com/document/d/1cMLaN9iHB2-opf3VN7f1DSgRHMGFiqMzDzSkxJfFuKw/edit?usp=sharing).
