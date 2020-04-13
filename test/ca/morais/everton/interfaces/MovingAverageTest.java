@@ -12,7 +12,8 @@ import static org.junit.Assert.assertEquals;
 
 public class MovingAverageTest {
 
-    private static final int NUMBER_OF_ELEMENTS_TEST = 3;
+    private static final int TEST_THREE_ELEMENTS = 3;
+    private static final int TEST_FOUR_ELEMENTS = 4;
 
     @Test(expected = NoSuchElementException.class)
     public void get_whenThereIsNoElements_throwsException() {
@@ -67,7 +68,7 @@ public class MovingAverageTest {
         movingAverage.add(elementA);
         movingAverage.add(elementB);
 
-        movingAverage.average(NUMBER_OF_ELEMENTS_TEST);
+        movingAverage.average(TEST_THREE_ELEMENTS);
     }
 
     @Test
@@ -95,9 +96,9 @@ public class MovingAverageTest {
         movingAverage.add(elementB);
         movingAverage.add(elementC);
 
-        Number resulted = movingAverage.average(NUMBER_OF_ELEMENTS_TEST);
+        Number resulted = movingAverage.average(TEST_THREE_ELEMENTS);
 
-        Number expected = (elementA + elementB + elementC) / NUMBER_OF_ELEMENTS_TEST;
+        Number expected = (elementA + elementB + elementC) / TEST_THREE_ELEMENTS;
 
         assertEquals(expected, resulted);
     }
@@ -117,9 +118,31 @@ public class MovingAverageTest {
         movingAverage.add(elementC);
         movingAverage.add(elementD);
 
-        Number resulted = movingAverage.average(NUMBER_OF_ELEMENTS_TEST);
+        Number resulted3Elements = movingAverage.average(TEST_THREE_ELEMENTS);
+        Number expected3Elements = (elementB + elementC + elementD) / TEST_THREE_ELEMENTS;
+        assertEquals(expected3Elements, resulted3Elements);
 
-        Number expected = (elementB + elementC + elementD) / NUMBER_OF_ELEMENTS_TEST;
+        Number resulted4Elements = movingAverage.average(TEST_FOUR_ELEMENTS);
+        Number expected4Elements = (elementA + elementB + elementC + elementD) / TEST_FOUR_ELEMENTS;
+        assertEquals(expected4Elements, resulted4Elements);
+    }
+
+    @Test
+    public void average_whenNumberOfElementsIsOneMillion_returnsCalculatedAverage() {
+        MovingAverage movingAverage = new MovingAverageImplTest();
+
+        Random random = new Random();
+        Integer sum = 0;
+
+        int numberOfElements = 1000000;
+        for (int i = 1; i <= numberOfElements; i++) {
+            Integer elementA = random.nextInt();
+            movingAverage.add(elementA);
+            sum += elementA;
+        }
+
+        Number resulted = movingAverage.average(numberOfElements);
+        Number expected = sum / numberOfElements;
 
         assertEquals(expected, resulted);
     }
