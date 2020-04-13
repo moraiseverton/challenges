@@ -129,7 +129,7 @@ public class MovingAverageTest {
         private List<Integer> items;
         private int size;
 
-        MovingAverageImplTest() {
+        private MovingAverageImplTest() {
             this.items = new ArrayList<>();
             this.size = 0;
         }
