@@ -6,7 +6,36 @@ import java.util.NoSuchElementException;
 public interface MovingAverage<T extends Number> {
 
     /**
-     *
+     * @param element
+     */
+    void add(T element);
+
+    /**
+     * @param index
+     * @return
+     */
+    T getElement(int index);
+
+    /**
+     * @return
+     */
+    Collection<T> getElements();
+
+    /**
+     * @param a
+     * @param b
+     * @return
+     */
+    T sum(T a, T b);
+
+    /**
+     * @param a
+     * @param numberOfElements
+     * @return
+     */
+    T dividedByNumberOfElements(T a, int numberOfElements);
+
+    /**
      * @return
      */
     T initialResult();
@@ -14,15 +43,9 @@ public interface MovingAverage<T extends Number> {
     /**
      * @return
      */
-    abstract int size();
+    int size();
 
     /**
-     * @param element
-     */
-    public abstract void add(T element);
-
-    /**
-     *
      * @param position
      * @return
      */
@@ -36,34 +59,6 @@ public interface MovingAverage<T extends Number> {
         }
         return getElement(index);
     }
-
-    /**
-     *
-     * @param index
-     * @return
-     */
-    public abstract T getElement(int index);
-
-    /**
-     * @return
-     */
-    public abstract Collection<T> getElements();
-
-    /**
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-    abstract T sum(T a, T b);
-
-    /**
-     *
-     * @param a
-     * @param numberOfElements
-     * @return
-     */
-    abstract T dividedByNumberOfElements(T a, int numberOfElements);
 
     /**
      * @param lastElements
