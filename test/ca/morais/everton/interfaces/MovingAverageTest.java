@@ -12,6 +12,8 @@ import static org.junit.Assert.assertEquals;
 
 public class MovingAverageTest {
 
+    private static final int NUMBER_OF_ELEMENTS_TEST = 3;
+
     @Test(expected = NoSuchElementException.class)
     public void get_whenThereIsNoElements_throwsException() {
         MovingAverage movingAverage = new MovingAverageImplTest();
@@ -65,8 +67,7 @@ public class MovingAverageTest {
         movingAverage.add(elementA);
         movingAverage.add(elementB);
 
-        final int NUMBER_OF_ELEMENTS = 3;
-        movingAverage.average(NUMBER_OF_ELEMENTS);
+        movingAverage.average(NUMBER_OF_ELEMENTS_TEST);
     }
 
     @Test
@@ -94,10 +95,9 @@ public class MovingAverageTest {
         movingAverage.add(elementB);
         movingAverage.add(elementC);
 
-        final int NUMBER_OF_ELEMENTS = 3;
-        Number resulted = movingAverage.average(NUMBER_OF_ELEMENTS);
+        Number resulted = movingAverage.average(NUMBER_OF_ELEMENTS_TEST);
 
-        Number expected = (elementA + elementB + elementC) / NUMBER_OF_ELEMENTS;
+        Number expected = (elementA + elementB + elementC) / NUMBER_OF_ELEMENTS_TEST;
 
         assertEquals(expected, resulted);
     }
@@ -117,10 +117,9 @@ public class MovingAverageTest {
         movingAverage.add(elementC);
         movingAverage.add(elementD);
 
-        final int NUMBER_OF_ELEMENTS = 3;
-        Number resulted = movingAverage.average(NUMBER_OF_ELEMENTS);
+        Number resulted = movingAverage.average(NUMBER_OF_ELEMENTS_TEST);
 
-        Number expected = (elementB + elementC + elementD) / NUMBER_OF_ELEMENTS;
+        Number expected = (elementB + elementC + elementD) / NUMBER_OF_ELEMENTS_TEST;
 
         assertEquals(expected, resulted);
     }
