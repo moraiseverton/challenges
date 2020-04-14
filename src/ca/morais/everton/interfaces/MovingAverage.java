@@ -91,9 +91,9 @@ public interface MovingAverage<T extends Number> {
      * movingAverage.add(8);
      * movingAverage.add(9);
      *
-     * movingAverage.average(1); // returns 7;
-     * movingAverage.average(2); // returns 8;
-     * movingAverage.average(3); // returns 9;
+     * movingAverage.get(1); // returns 7;
+     * movingAverage.get(2); // returns 8;
+     * movingAverage.get(3); // returns 9;
      * </pre>
      *
      * @param position The element's position
