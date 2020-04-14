@@ -1,4 +1,4 @@
-package ca.morais.everton.domain;
+package ca.morais.everton.impl;
 
 import ca.morais.everton.interfaces.MovingAverage;
 import org.junit.Test;
