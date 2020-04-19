@@ -1,6 +1,6 @@
-from rest_framework import status, viewsets
+from django.http import JsonResponse
+from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.response import Response
 
 from .mixins import ReadWriteSerializerMixin
 from .models import Facility
@@ -14,18 +14,15 @@ class FacilityList(ReadWriteSerializerMixin, viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'put']
 
 
-@action(methods=['POST'], detail=True, name='Deactivate Facility', url_path='deactivate')
-def deactivate(self, request, pk=None):
-    facility = Facility.objects.get(pk=pk)
+@action(methods=['post'], detail=True, name='Deactivate Facility', url_path='deactivate')
+def deactivate(request, id=None):
+    facility = Facility.objects.get(pk=id)
 
     if facility.active:
         facility.active = False
         facility.save()
-        return Response(data=facility,
-                        status=status.HTTP_200_OK)
+        serializer = FacilityReadSerializer(facility, many=False)
+        return JsonResponse(serializer.data, safe=False, status=200)
     else:
-        return Response('Facility already deactivated.',
-                        status=status.HTTP_409_CONFLICT)
-
-
-
+        return JsonResponse({'error': 'facility already deactivated'},
+                            status=409)
