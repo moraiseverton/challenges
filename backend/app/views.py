@@ -6,4 +6,5 @@ from . import serializers
 class FacilityList(viewsets.ModelViewSet):
     queryset = models.Facility.objects.all()
     serializer_class = serializers.FacilitySerializer
+    http_method_names = ['get', 'post', 'put']
 
