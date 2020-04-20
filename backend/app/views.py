@@ -103,7 +103,7 @@ class WorkOrderViewSet(viewsets.ModelViewSet):
             raise ValidationError('Description cannot be updated after started.',
                                   code=HTTP_403_FORBIDDEN)
 
-        if updated_status == 'CANCELLED' and current_status != 'STARTED':
+        if updated_status == 'CANCELLED' and current_status == 'STARTED':
             raise ValidationError("Work order can only be cancelled before it is started.",
                                   code=HTTP_403_FORBIDDEN)
 
