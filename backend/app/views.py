@@ -7,8 +7,7 @@ from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_403_FORBIDDEN, HTTP_2
 
 from .mixins import ReadWriteSerializerMixin
 from .models import Facility, WorkOrder
-from .serializers import FacilityReadSerializer, FacilityWriteSerializer, WorkOrderReadSerializer, \
-    WorkOrderWriteSerializer
+from .serializers import FacilityReadSerializer, FacilityWriteSerializer, WorkOrderSerializer
 
 
 class FacilityViewSet(ReadWriteSerializerMixin, viewsets.ModelViewSet):
@@ -52,10 +51,9 @@ def deactivate(request, id=None):
                             status=409)
 
 
-class WorkOrderViewSet(ReadWriteSerializerMixin, viewsets.ModelViewSet):
+class WorkOrderViewSet(viewsets.ModelViewSet):
     queryset = WorkOrder.objects.all()
-    read_serializer_class = WorkOrderReadSerializer
-    write_serializer_class = WorkOrderWriteSerializer
+    serializer_class = WorkOrderSerializer
     http_method_names = ['get', 'post', 'put', 'head', 'options']
 
     def create(self, request, *args, **kwargs):
@@ -96,7 +94,7 @@ class WorkOrderViewSet(ReadWriteSerializerMixin, viewsets.ModelViewSet):
         self.validate_active_facility(updated_data.get('facility_id'))
 
         if updated_data.get('title') != current_instance.title:
-            return JsonResponse("Update title not allowed.", code=HTTP_403_FORBIDDEN)
+            raise ValidationError("Update title not allowed.", code=HTTP_403_FORBIDDEN)
 
         current_status = current_instance.status
         updated_status = updated_data.get('status')
@@ -123,6 +121,6 @@ class WorkOrderViewSet(ReadWriteSerializerMixin, viewsets.ModelViewSet):
             raise ValidationError('Facility not found.', code=HTTP_404_NOT_FOUND)
 
         if not facility.active:
-            raise ValidationError("Work orders can only be created for active facilities.",
+            raise ValidationError('Work orders can only be created for active facilities.',
                                   code=HTTP_403_FORBIDDEN)
 
