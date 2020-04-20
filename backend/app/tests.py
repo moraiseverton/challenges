@@ -32,6 +32,42 @@ class FacilityViewSetTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(expected_data, response.data)
 
+    def test_list_when_partial_name_and_partial_province_exists_filters_correctly(self):
+        factory = APIRequestFactory()
+        view = FacilityViewSet.as_view(actions={
+            'get': 'list',
+        })
+        Facility.objects.create(name="Mark's Deli", address="125 Research Drive", zip_code="R1C0P8",
+                                city="Winnipeg", province="MB", country="CA")
+
+        Facility.objects.create(name="John's Deli", address="887 Cushion Ave", zip_code="Z3I0O1",
+                                city="Calgary", province="AB", country="CA")
+
+        Facility.objects.create(name="Johnathan's Deli", address="12 Blue St", zip_code="L3F5I2",
+                                city="Edmonton", province="AB", country="CA")
+
+        Facility.objects.create(name="Johnny's Deli", address="1019 Erin Ave", zip_code="N3O0O1",
+                                city="Ottawa", province="ON", country="CA")
+
+        Facility.objects.create(name="John's Deli", address="87 Smith St", zip_code="M3B0O1",
+                                city="Brandon", province="MB", country="CA")
+
+        Facility.objects.create(name="Charles's Deli", address="23 Ross Ave", zip_code="O1V3W9",
+                                city="Toronto", province="ON", country="CA", active=False)
+
+        Facility.objects.create(name="Joanne's Deli", address="57 Portage St", zip_code="Y6T5R4",
+                                city="Calgary", province="AB", country="CA")
+
+        request = factory.get('', data={'partialName': 'john', 'partialProvince': 'ab'})
+        response = view(request)
+
+        expected_facilities = Facility.objects.filter(province='AB', name__contains='John')
+        expected_serializer = FacilityReadSerializer(expected_facilities, many=True)
+        expected_data = expected_serializer.data
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(expected_data, response.data)
+
     def test_deactivate_when_facility_is_active_deactivates_correctly(self):
         facility = Facility.objects.create(name="Mark's Deli", address="125 Research Drive", zip_code="R1C0P8",
                                            city="Winnipeg", province="MB", country="CA")
