@@ -15,11 +15,15 @@ Including another URLconf
 """
 
 from django.urls import include, path
+from django.views.decorators.csrf import csrf_exempt
+
 from .api import router
+from . import views
 
 app_name = "app"
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),
+    path('api/v1/facilities/<id>/deactivate', csrf_exempt(views.deactivate), name='deactivate'),
 ]
 

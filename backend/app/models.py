@@ -56,6 +56,8 @@ class Facility(models.Model):
 
     country = CountryField()
 
+    active = models.BooleanField(default=True)
+
     def _str_(self):
         return self.name
 
