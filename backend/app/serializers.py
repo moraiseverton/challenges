@@ -19,21 +19,10 @@ class FacilityWriteSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'address', 'zip_code', 'city', 'province', 'country')
 
 
-class WorkOrderReadSerializer(serializers.ModelSerializer):
+class WorkOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WorkOrder
-        facility_id = serializers.PrimaryKeyRelatedField(queryset=Facility.objects.filter(active=True),
-                                                         write_only=False)
+        facility_id = serializers.PrimaryKeyRelatedField(queryset=Facility.objects.filter(active=True))
         fields = '__all__'
-
-
-class WorkOrderWriteSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = WorkOrder
-        facility_id = serializers.PrimaryKeyRelatedField(queryset=Facility.objects.filter(active=True),
-                                                         write_only=False)
-        exclude = ('id', 'status')
-
 
