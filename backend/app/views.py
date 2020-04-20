@@ -4,8 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from .mixins import ReadWriteSerializerMixin
-from .models import Facility
-from .serializers import FacilityReadSerializer, FacilityWriteSerializer
+from .models import Facility, WorkOrder
+from .serializers import FacilityReadSerializer, FacilityWriteSerializer, WorkOrderReadSerializer, WorkOrderWriteSerializer
 
 
 class FacilityViewSet(ReadWriteSerializerMixin, viewsets.ModelViewSet):
@@ -47,3 +47,9 @@ def deactivate(request, id=None):
     else:
         return JsonResponse({'error': 'facility already deactivated'},
                             status=409)
+
+
+class WorkOrderViewSet(ReadWriteSerializerMixin, viewsets.ModelViewSet):
+    queryset = WorkOrder.objects.all()
+    read_serializer_class = WorkOrderReadSerializer
+    write_serializer_class = WorkOrderWriteSerializer

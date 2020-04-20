@@ -58,6 +58,43 @@ class Facility(models.Model):
 
     active = models.BooleanField(default=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
+
+class WorkOrder(models.Model):
+    STATE_CHOICES = (
+        ("NEW", "New"),
+        ("STARTED", "Started"),
+        ("COMPLETED", "Completed"),
+        ("CANCELLED", "Cancelled"),
+    )
+
+    title = models.CharField(
+        "Title",
+        max_length=250,
+        blank=False
+    )
+
+    description = models.TextField(
+        "Description",
+        blank=True,
+        null=True
+    )
+
+    status = models.CharField(
+        "Current status",
+        max_length=10,
+        choices=STATE_CHOICES,
+        blank=False,
+        default="NEW"
+    )
+
+    facility_id = models.ForeignKey(
+        Facility,
+        on_delete=models.CASCADE,
+        verbose_name="Facility"
+    )
+
+    def __str__(self):
+        return self.title
