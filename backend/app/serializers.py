@@ -33,7 +33,9 @@ class WorkOrderWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkOrder
         facility_id = serializers.PrimaryKeyRelatedField(queryset=Facility.objects.filter(active=True),
-                                                         write_only=False)
-        exclude = ('id', 'status')
+                                                         write_only=True)
+        exclude = ('id',)
+
+
 
 
