@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RectangleServiceTest {
 
-    private RectangleService service = new RectangleService();
+    private final RectangleService service = new RectangleService();
 
     @Test
     public void intersection_whenRectanglesOverlapHorizontallyOnTop_returnsOverlappedRectangleArea() {
