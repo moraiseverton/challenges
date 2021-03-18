@@ -54,25 +54,25 @@ public class Rectangle {
     }
 
     public boolean adjacent(Rectangle other) {
-        return (this.topRight.x == other.bottomLeft.x && (topRightYPartOfBottomLeft(this, other) || topRightYPartOfBottomLeft(other, this))) ||
-                (this.bottomLeft.x == other.topRight.x && (bottomLeftYPartOfTopRight(this, other) || bottomLeftYPartOfTopRight(other, this))) ||
-                (this.topRight.y == other.bottomLeft.y && (topRightXPartOfBottomLeft(this, other) || topRightXPartOfBottomLeft(other, this))) ||
-                (this.bottomLeft.y == other.topRight.y && (bottomLeftXPartOfTopRight(this, other) || bottomLeftXPartOfTopRight(other, this)));
+        return (this.topRight.x == other.bottomLeft.x && (this.containsBottomLeftY(other) || other.containsBottomLeftY(this))) ||
+                (this.bottomLeft.x == other.topRight.x && (this.containsTopRightY(other) || other.containsTopRightY(this))) ||
+                (this.topRight.y == other.bottomLeft.y && (this.containsBottomLeftX(other) || other.containsBottomLeftX(this))) ||
+                (this.bottomLeft.y == other.topRight.y && (this.containsTopRightX(other) || other.containsTopRightX(this)));
     }
 
-    private boolean topRightXPartOfBottomLeft(Rectangle a, Rectangle other) {
-        return other.bottomLeft.x >= a.bottomLeft.x && other.bottomLeft.x <= a.topRight.x && !other.bottomLeft.equals(a.topRight);
+    private boolean containsBottomLeftX(Rectangle other) {
+        return this.bottomLeft.x <= other.bottomLeft.x && other.bottomLeft.x <= this.topRight.x && !other.bottomLeft.equals(this.topRight);
     }
 
-    private boolean topRightYPartOfBottomLeft(Rectangle a, Rectangle other) {
-        return other.bottomLeft.y >= a.bottomLeft.y && other.bottomLeft.y <= a.topRight.y && !other.bottomLeft.equals(a.topRight);
+    private boolean containsBottomLeftY(Rectangle other) {
+        return this.bottomLeft.y <= other.bottomLeft.y && other.bottomLeft.y <= this.topRight.y && !other.bottomLeft.equals(this.topRight);
     }
 
-    private boolean bottomLeftXPartOfTopRight(Rectangle a, Rectangle other) {
-        return other.topRight.x <= a.topRight.x && other.topRight.x >= a.bottomLeft.x && !other.topRight.equals(a.bottomLeft);
+    private boolean containsTopRightX(Rectangle other) {
+        return this.topRight.x >= other.topRight.x && other.topRight.x >= this.bottomLeft.x && !other.topRight.equals(this.bottomLeft);
     }
 
-    private boolean bottomLeftYPartOfTopRight(Rectangle a, Rectangle other) {
-        return other.topRight.y <= a.topRight.y && other.topRight.y >= a.bottomLeft.y && !other.topRight.equals(a.bottomLeft);
+    private boolean containsTopRightY(Rectangle other) {
+        return this.topRight.y >= other.topRight.y && other.topRight.y >= this.bottomLeft.y && !other.topRight.equals(this.bottomLeft);
     }
 }
