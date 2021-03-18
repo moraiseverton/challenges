@@ -1,9 +1,14 @@
 package ca.morais.everton.rectangles;
 
+import ca.morais.everton.rectangles.exceptions.RectangleIntersectionNotFoundException;
 
 public class RectangleService {
 
-    Rectangle intersection(Rectangle alpha, Rectangle beta) {
+    public Rectangle intersection(Rectangle alpha, Rectangle beta) {
+        if (!alpha.overlaps(beta)) {
+            throw new RectangleIntersectionNotFoundException(alpha, beta);
+        }
+
         if (overlapHorizontally(alpha, beta)) {
             return new Rectangle(beta.bottomLeft.x, beta.bottomLeft.y, alpha.topRight.x, beta.topRight.y);
         }
@@ -36,7 +41,7 @@ public class RectangleService {
             return new Rectangle(alpha.bottomLeft.x, beta.bottomLeft.y, beta.topRight.x, alpha.topRight.y);
         }
 
-        return null;
+        throw new RectangleIntersectionNotFoundException(alpha, beta);
     }
 
     private boolean overlapOnBottomLeftOrTopRight(Rectangle a, Rectangle b) {

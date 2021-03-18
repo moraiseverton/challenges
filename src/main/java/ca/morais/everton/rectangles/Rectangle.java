@@ -2,7 +2,7 @@ package ca.morais.everton.rectangles;
 
 import java.util.Objects;
 
-class Rectangle {
+public class Rectangle {
 
     Point bottomLeft;
     Point topRight;
