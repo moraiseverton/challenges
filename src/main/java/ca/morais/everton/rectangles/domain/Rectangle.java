@@ -1,4 +1,4 @@
-package ca.morais.everton.rectangles;
+package ca.morais.everton.rectangles.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -33,7 +33,7 @@ public class Rectangle {
         private int y;
     }
 
-    boolean overlaps(Rectangle other) {
+    public boolean overlaps(Rectangle other) {
         if (this.topRight.x <= other.bottomLeft.x || this.bottomLeft.x >= other.topRight.x) {
             return false;
         }
@@ -45,7 +45,7 @@ public class Rectangle {
         return true;
     }
 
-    boolean contains(Rectangle other) {
+    public boolean contains(Rectangle other) {
         if (this.equals(other)) {
             return false;
         }
@@ -53,7 +53,7 @@ public class Rectangle {
                 this.topRight.x >= other.topRight.x && this.topRight.y >= other.topRight.y);
     }
 
-    boolean adjacent(Rectangle other) {
+    public boolean adjacent(Rectangle other) {
         return (this.topRight.x == other.bottomLeft.x && (topRightYPartOfBottomLeft(this, other) || topRightYPartOfBottomLeft(other, this))) ||
                 (this.bottomLeft.x == other.topRight.x && (bottomLeftYPartOfTopRight(this, other) || bottomLeftYPartOfTopRight(other, this))) ||
                 (this.topRight.y == other.bottomLeft.y && (topRightXPartOfBottomLeft(this, other) || topRightXPartOfBottomLeft(other, this))) ||

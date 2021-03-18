@@ -1,6 +1,6 @@
-package ca.morais.everton.rectangles;
+package ca.morais.everton.rectangles.domain;
 
-import org.junit.jupiter.api.Disabled;
+import ca.morais.everton.rectangles.domain.Rectangle;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

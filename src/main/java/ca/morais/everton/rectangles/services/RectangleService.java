@@ -1,5 +1,6 @@
-package ca.morais.everton.rectangles;
+package ca.morais.everton.rectangles.services;
 
+import ca.morais.everton.rectangles.domain.Rectangle;
 import ca.morais.everton.rectangles.exceptions.RectangleIntersectionNotFoundException;
 
 public class RectangleService {

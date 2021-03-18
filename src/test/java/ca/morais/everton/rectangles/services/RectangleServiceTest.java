@@ -1,6 +1,8 @@
-package ca.morais.everton.rectangles;
+package ca.morais.everton.rectangles.services;
 
+import ca.morais.everton.rectangles.domain.Rectangle;
 import ca.morais.everton.rectangles.exceptions.RectangleIntersectionNotFoundException;
+import ca.morais.everton.rectangles.services.RectangleService;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

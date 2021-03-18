@@ -1,6 +1,6 @@
 package ca.morais.everton.rectangles.exceptions;
 
-import ca.morais.everton.rectangles.Rectangle;
+import ca.morais.everton.rectangles.domain.Rectangle;
 
 public class RectangleIntersectionNotFoundException extends RuntimeException {
 
