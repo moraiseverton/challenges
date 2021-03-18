@@ -190,8 +190,25 @@ class RectangleTest {
     }
 
     @Test
-    @Disabled
     public void adjacent_whenRectanglesDoNotHaveAdjacency_returnsFalse() {
+        Rectangle rectangleA = new Rectangle(5, 5, 15, 20);
+        Rectangle rectangleB = new Rectangle(25, 25, 30, 30);
+
+        assertFalse(rectangleA.adjacent(rectangleB));
+        assertFalse(rectangleB.adjacent(rectangleA));
+    }
+
+    @Test
+    public void adjacent_whenRectanglesDoNotHaveAdjacency_andCommonX_returnsFalse() {
+        Rectangle rectangleA = new Rectangle(5, 5, 15, 20);
+        Rectangle rectangleB = new Rectangle(15, 25, 20, 30);
+
+        assertFalse(rectangleA.adjacent(rectangleB));
+        assertFalse(rectangleB.adjacent(rectangleA));
+    }
+
+    @Test
+    public void adjacent_whenRectanglesDoNotHaveAdjacency_andCommonY_returnsFalse() {
         Rectangle rectangleA = new Rectangle(5, 5, 10, 20);
         Rectangle rectangleB = new Rectangle(15, 20, 20, 30);
 
@@ -200,11 +217,11 @@ class RectangleTest {
     }
 
     @Test
-    @Disabled
     public void adjacent_whenRectanglesHaveCommonPoint_andDoNotHaveAdjacency_returnsFalse() {
         Rectangle rectangleA = new Rectangle(5, 5, 10, 20);
         Rectangle rectangleB = new Rectangle(10, 20, 20, 30);
 
         assertFalse(rectangleA.adjacent(rectangleB));
+        assertFalse(rectangleB.adjacent(rectangleA));
     }
 }
