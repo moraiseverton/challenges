@@ -38,11 +38,7 @@ public class Rectangle {
             return false;
         }
 
-        if (this.topRight.y <= other.bottomLeft.y || this.bottomLeft.y >= other.topRight.y) {
-            return false;
-        }
-
-        return true;
+        return this.topRight.y > other.bottomLeft.y && this.bottomLeft.y < other.topRight.y;
     }
 
     public boolean contains(Rectangle other) {
