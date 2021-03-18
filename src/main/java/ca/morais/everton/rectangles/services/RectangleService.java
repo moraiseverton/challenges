@@ -3,7 +3,7 @@ package ca.morais.everton.rectangles.services;
 import ca.morais.everton.rectangles.domain.Rectangle;
 import ca.morais.everton.rectangles.exceptions.RectangleIntersectionNotFoundException;
 
-public class RectangleService {
+class RectangleService {
 
     public Rectangle intersection(Rectangle alpha, Rectangle beta) {
         if (!alpha.overlaps(beta)) {
