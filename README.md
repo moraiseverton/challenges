@@ -20,11 +20,17 @@ mvn test
 A representation of the rectangle. 
 It contains the start point `bottomLeft` and `topRight` as the end point of the shape.
 
+![Rectangle](./misc/images/example-rectangle.jpg)
+
+
 ##### `Rectangle.Point`
 A static inner class that represents coordinates points: *x* and *y*.
 
 ##### `overlaps(Rectangle other)`
-Returns true if has any intersection line. 
+
+![Overlaps](./misc/images/example-intersection.jpg)
+
+Returns true if there is an intersection. 
 
 ```$java
 Rectangle alpha = new Rectangle(0, 0, 10, 20);
@@ -34,6 +40,9 @@ rectangleA.overlaps(rectangleB); // true
 ```
 
 ##### `contains(Rectangle other)`
+
+![Contains](./misc/images/example-contains.jpg)
+
 Returns true when `other` is fully contained in the main rectangle area. 
 
 ```$java
@@ -45,6 +54,9 @@ beta.contains(alpha); // false
 ```
 
 ##### `adjacent(Rectangle other)`
+
+![Adjacent](./misc/images/example-adjacent.jpg)
+
 Returns true if both rectangles share one side, fully or partially.
 
 ```$java
@@ -58,7 +70,11 @@ alpha.adjacent(beta);
 
 Provides services related to `Rectangle` domain class.
 
+
 ##### `intersection(Rectangle alpha, Rectangle beta)`
+
+![Intersection](./misc/images/example-intersection.jpg)
+
 - Returns the intersection of two rectangles in a brand new one;
 - In case of no intersection, returns `RectangleIntersectionNotFoundException` exception.
 
@@ -66,5 +82,5 @@ Provides services related to `Rectangle` domain class.
 Rectangle alpha = new Rectangle(5, 5, 20, 25);
 Rectangle beta = new Rectangle(15, 10, 25, 20);
 
-Rectangle intersection = service.intersection(alpha, beta); // bottomLeft {15, 10}, topRight {25, 20}
+Rectangle intersection = service.intersection(alpha, beta); // bottomLeft {15, 10}, topRight {20, 20}
 ```
