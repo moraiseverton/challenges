@@ -1,6 +1,5 @@
 package ca.morais.everton.rectangles.domain;
 
-import ca.morais.everton.rectangles.domain.Rectangle;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
