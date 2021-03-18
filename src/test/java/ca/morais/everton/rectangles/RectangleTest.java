@@ -64,7 +64,7 @@ class RectangleTest {
     @Test
     public void contains_whenRectanglesHaveSameBottomLeftPoint_returnsTrue() {
         Rectangle rectangleA = new Rectangle(0, 0, 30, 20);
-        Rectangle rectangleB = new Rectangle(rectangleA.bottomLeft, new Rectangle.Point(25, 15));
+        Rectangle rectangleB = new Rectangle(rectangleA.bottomLeft(), new Rectangle.Point(25, 15));
 
         assertTrue(rectangleA.contains(rectangleB));
     }
@@ -72,7 +72,7 @@ class RectangleTest {
     @Test
     public void contains_whenRectanglesHaveSameTopRightPoint_returnsTrue() {
         Rectangle rectangleA = new Rectangle(0, 0, 30, 20);
-        Rectangle rectangleB = new Rectangle(new Rectangle.Point(5, 5), rectangleA.topRight);
+        Rectangle rectangleB = new Rectangle(new Rectangle.Point(5, 5), rectangleA.topRight());
 
         assertTrue(rectangleA.contains(rectangleB));
     }
