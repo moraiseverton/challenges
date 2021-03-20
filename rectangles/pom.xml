@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ca.morais.everton</groupId>
-    <artifactId>challenges</artifactId>
+    <artifactId>rectangles</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>challenges</name>
-    <description>Challenges</description>
+    <name>rectangles</name>
+    <description>Rectangles</description>
 
     <properties>
         <java.version>11</java.version>
