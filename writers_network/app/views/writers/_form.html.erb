@@ -1,0 +1,35 @@
+<%= form_with(model: writer, local: true) do |form| %>
+  <% if writer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(writer.errors.count, "error") %> prohibited this writer from being saved:</h2>
+
+      <ul>
+      <% writer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong><%= form.label :name %></strong>
+    <%= form.text_field :name, id: :writer_name, :size=> "50" %>
+  </div>
+
+  <div class="field">
+    <strong><%= form.label :website %></strong>
+    <%= form.text_field :website, id: :writer_website, :size=> "100" %>
+  </div>
+
+  <div class="field">
+    <strong><%= form.label :friendships %></strong>
+    <%= collection_check_boxes(:writer, :writer_ids, possible_friends, :id, :name) do |b|
+          b.label(:"data-value" => b.value) { b.check_box + b.text }
+        end
+    %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

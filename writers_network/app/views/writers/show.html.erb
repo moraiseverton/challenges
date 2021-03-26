@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @writer.name %>
+</p>
+
+<p>
+  <strong>Website URL:</strong>
+  <%= @writer.website %>
+</p>
+
+<p>
+  <strong>Website shortening:</strong>
+  <%= @writer.website_shortened %>
+</p>
+
+<p>
+  <strong>Website headings:</strong>
+  <%= @writer.website_headings %>
+</p>
+
+<p>
+  <strong>Friends:</strong>
+  <table>
+    <tbody>
+      <% writer_friends.each do |friend| %>
+        <tr>
+          <td><%= link_to friend.name, friend.website, :target => "_blank" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+<p>
+  <div class="field">
+    <table col="1">
+      <tbody>
+        <tr>
+          <td><strong>Search</strong></td>
+        </tr>
+        <tr>
+          <td><%= text_field :heading_search, id: :heading_search, :size=> "50" %></td>
+        </tr>
+        <tr>
+          <td><%= button_to "Show breadcrumb", action: "breadcrumb" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</p>
+
+<%= link_to 'Edit', edit_writer_path(@writer) %> |
+<%= link_to 'Back', writers_path %>
