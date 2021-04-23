@@ -48,7 +48,7 @@ query_string = {
     "privateOnly" : "false",
     "testPurposeId" : "1",
     "testTypeId" : "5",
-    "region_id" : region_id
+    "regionId" : region_id
 }
 
 headers = {

@@ -4,11 +4,15 @@ import pywhatkit
 import datetime
 import time
 
-regionId = 9  # Ontario
-
+region_id = 9  # Ontario
 url = "https://secure.celpip.ca/RegWebApp/api/TestSessions"
-
-querystring = {"brandId":"1","privateOnly":"false","testPurposeId":"1","testTypeId":"5","regionId":regionId}
+query_string = {
+    "brandId" : "1",
+    "privateOnly" : "false",
+    "testPurposeId" : "1",
+    "testTypeId" : "5",
+    "regionId" : region_id
+}
 
 headers = {
     'authority': "secure.celpip.ca",
@@ -33,7 +37,7 @@ celpip_website = 'https://secure.celpip.ca/RegWebApp/#/registration/sitting-sele
 recipient_number = input("Enter recipient number: ")
 
 while True:
-    response = requests.request("GET", url, headers=headers, params=querystring)
+    response = requests.request("GET", url, headers=headers, params=query_string)
 
     data = response.json()
     content_size = len(data['content'])
