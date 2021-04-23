@@ -20,6 +20,7 @@ headers = {
     'cache-control': "no-cache,no-cache",
     'authorization': "null",
     'expires': "Mon, 14 Feb 2000 05:00:00 GMT",
+    
     'sec-fetch-site': "same-origin",
     'sec-fetch-mode': "cors",
     'sec-fetch-dest': "empty",
@@ -39,14 +40,21 @@ while True:
     content_size = len(data['content'])
 
     if response.status_code == 200 and content_size > 0:
-        now = datetime.datetime.now()
-        next_run = now + datetime.timedelta(seconds=75)
+        message_sent = False
 
-        send_message = 'Found {} available locations for Ontario, check CELPIP Website ASAP! {}'.format(content_size, celpip_website)
+        now = datetime.datetime.now()
+        next_run = now + datetime.timedelta(seconds=70)
+
+        send_message = '{}: Found {} available locations in Ontario, check CELPIP Website ASAP! {}'.format(now, content_size, celpip_website)
+
+        print('Sending message to Whatsapp: {}'.format(send_message))
         print(send_message)
 
-        pywhatkit.sendwhatmsg(recipient_number, send_message, next_run.hour, next_run.minute)
-        break
+        try:
+            pywhatkit.sendwhatmsg(recipient_number, send_message, next_run.hour, next_run.minute)
+            message_sent = True
+        except:
+            print("{}: Error sending the message to {}. Retrying...".format(datetime.datetime.now(), recipient_number))
     else:
-        print("Still checking for new CELPIP available locations...", datetime.datetime.now())
-        time.sleep(120)
+        print("{}: Still checking for new CELPIP available locations...".format(datetime.datetime.now()))
+        time.sleep(15)
