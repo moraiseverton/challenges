@@ -20,7 +20,6 @@ headers = {
     'cache-control': "no-cache,no-cache",
     'authorization': "null",
     'expires': "Mon, 14 Feb 2000 05:00:00 GMT",
-    
     'sec-fetch-site': "same-origin",
     'sec-fetch-mode': "cors",
     'sec-fetch-dest': "empty",

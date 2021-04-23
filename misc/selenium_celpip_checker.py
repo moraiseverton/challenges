@@ -43,7 +43,7 @@ input_box = get_whatsapp_target_input_box(target)
 
 region_id = 9  # Ontario
 url = "https://secure.celpip.ca/RegWebApp/api/TestSessions"
-querystring = {
+query_string = {
     "brandId" : "1",
     "privateOnly" : "false",
     "testPurposeId" : "1",
@@ -61,7 +61,6 @@ headers = {
     'cache-control': "no-cache,no-cache",
     'authorization': "null",
     'expires': "Mon, 14 Feb 2000 05:00:00 GMT",
-    
     'sec-fetch-site': "same-origin",
     'sec-fetch-mode': "cors",
     'sec-fetch-dest': "empty",
@@ -75,7 +74,7 @@ celpip_website = 'https://secure.celpip.ca/RegWebApp/#/registration/sitting-sele
 
 while True:
     try:
-        response = requests.request("GET", url, headers=headers, params=querystring)
+        response = requests.request("GET", url, headers=headers, params=query_string)
 
         data = response.json()
         content_size = len(data['content'])
